@@ -58,6 +58,8 @@ double calculate_pi(int num_threads, int samples) {
 
         //#pragma atomic
         integral_hits += thr_hits;
+
+        free_rand(gen);
     }
 
     pi = 4.0 * (double) integral_hits / samples;

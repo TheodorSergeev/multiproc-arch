@@ -1,11 +1,15 @@
 /*
 ============================================================================
 Filename    : function.c
-Author      : Your names goes here
-SCIPER		: Your SCIPER numbers
+Author      : Fedor Sergeev
+SCIPER		: 323636
 ============================================================================
 */
 
-double identity_f (double x){
+double identity_f(double x){
     return x;
+}
+
+double quad_f(double x){
+    return x * x;
 }
