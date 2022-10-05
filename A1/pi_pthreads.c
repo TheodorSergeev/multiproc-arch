@@ -35,7 +35,7 @@ int main (int argc, const char *argv[]) {
 
 
 double calculate_pi (int num_threads, int samples) {
-    double pi;
+    double pi = 0.0;
 
     /* Your code goes here */
 

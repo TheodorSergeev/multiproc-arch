@@ -38,24 +38,28 @@ double calculate_pi(int num_threads, int samples) {
 
     double pi = 0.0;
 
-    double integral_hits = 0.0;
+    int integral_hits = 0.0;
 
     double x = 0.0;
     double y = 0.0;
 
-    #pragma omp parallel private(x, y) num_threads(num_threads)
+    #pragma omp parallel private(x, y) shared(integral_hits) num_threads(num_threads)
     {
         rand_gen gen = init_rand();
+        int thr_hits = 0.0;
 
-        for(int i = 0; i < samples; ++i) {
+        for(int i = 0; i < samples; i += num_threads) {
             x = next_rand(gen);
             y = next_rand(gen);
 
             if(x * x + y * y <= 1.0) 
-                integral_hits += 1.0;
+                thr_hits += 1;
         }
+
+        //#pragma atomic
+        integral_hits += thr_hits;
     }
 
-    pi = 4.0 * integral_hits / samples;
+    pi = 4.0 * (double) integral_hits / samples;
     return pi;
 }
