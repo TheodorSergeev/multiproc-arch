@@ -1,0 +1,5 @@
+# ignore slurm outputs
+*.out
+
+# ignore object files
+*.o
